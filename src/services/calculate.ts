@@ -28,7 +28,7 @@ const calculateATK = (inputs: AttackInputs) => {
   console.log(`Passive: ${atk}`);
 
   //super attack
-  atk = Math.floor(atk * 6.95);
+  atk = Math.floor(atk * inputs.saMulti);
   console.log(`Supper attack: ${atk}`);
 
   return atk;

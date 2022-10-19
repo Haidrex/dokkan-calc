@@ -1,3 +1,4 @@
+import { MultiValue } from "chakra-react-select";
 import { LinkSkill } from "./LinkSkill";
 
 export interface AttackInputs {
@@ -7,6 +8,6 @@ export interface AttackInputs {
   support: number;
   passive: number;
   kiMulti: number;
-  links: LinkSkill[];
+  links: MultiValue<LinkSkill>;
   saMulti: number;
 }

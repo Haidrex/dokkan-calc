@@ -1,9 +1,10 @@
 import { Box, FormControl, FormLabel } from "@chakra-ui/react";
-import { Select } from "chakra-react-select";
+import { MultiValue, Select } from "chakra-react-select";
 import { AllLinks } from "../../docs/AllLinks";
+import { LinkSkill } from "../../models/LinkSkill";
 
 type Props = {
-  handleChange: (e: any) => void;
+  handleChange: (newValue: MultiValue<LinkSkill>) => void;
 };
 
 const Links = ({ handleChange }: Props) => {

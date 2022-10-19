@@ -10,6 +10,8 @@ import SuperAttack from "../Inputs/SuperAttack";
 import AttackModal from "./AttackModal";
 import calculateATK from "../../services/calculate";
 import Links from "../Inputs/Links";
+import { LinkSkill } from "../../models/LinkSkill";
+import { MultiValue } from "chakra-react-select";
 
 type Props = {};
 
@@ -32,8 +34,8 @@ const Attack = (props: Props) => {
     setInputs((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleLinkChange = (links: any) => {
-    setInputs((values) => ({ ...values, ["links"]: links }));
+  const handleLinkChange = (newValue: MultiValue<LinkSkill>) => {
+    setInputs((values) => ({ ...values, ["links"]: newValue }));
   };
 
   const handleSaMultiChange = (multiplier: string) => {
