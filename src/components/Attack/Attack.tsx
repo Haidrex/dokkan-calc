@@ -8,7 +8,7 @@ import SimplePassive from '../Inputs/SimplePassive';
 import KiMultiplier from '../Inputs/KiMultiplier';
 import SuperAttack from '../Inputs/SuperAttack';
 import AttackModal from './AttackModal';
-import calculateATK from '../../services/calculate';
+import { calculateATK } from '../../services/calculate';
 import Links from '../Inputs/Links';
 import { LinkSkill } from '../../models/LinkSkill';
 import { MultiValue } from 'chakra-react-select';
