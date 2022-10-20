@@ -15,13 +15,17 @@ type Props = {
 	setInputs: React.Dispatch<React.SetStateAction<AptInputs>>;
 };
 
-const STType2 = ({ id, inputs, setInputs }: Props) => {
+const STType4 = ({ id, inputs, setInputs }: Props) => {
 	return (
 		<Box>
 			<HStack>
 				<FormControl>
-					<FormLabel>ATK boost</FormLabel>
-					<Input name="atk" />
+					<FormLabel>Boost per sphere</FormLabel>
+					<Input name="perSphere" />
+				</FormControl>
+				<FormControl>
+					<FormLabel>Spheres obtained</FormLabel>
+					<Input name="spheres" />
 				</FormControl>
 				<FormControl>
 					<FormLabel>Activated</FormLabel>
@@ -32,4 +36,4 @@ const STType2 = ({ id, inputs, setInputs }: Props) => {
 	);
 };
 
-export default STType2;
+export default STType4;

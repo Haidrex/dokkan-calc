@@ -15,7 +15,7 @@ type Props = {
 	setInputs: React.Dispatch<React.SetStateAction<AptInputs>>;
 };
 
-const STType2 = ({ id, inputs, setInputs }: Props) => {
+const STType11 = ({ id, inputs, setInputs }: Props) => {
 	return (
 		<Box>
 			<HStack>
@@ -32,4 +32,4 @@ const STType2 = ({ id, inputs, setInputs }: Props) => {
 	);
 };
 
-export default STType2;
+export default STType11;

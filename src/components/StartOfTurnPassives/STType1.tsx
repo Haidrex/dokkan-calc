@@ -1,4 +1,11 @@
-import { Box, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import {
+	Box,
+	Checkbox,
+	FormControl,
+	FormLabel,
+	HStack,
+	Input,
+} from '@chakra-ui/react';
 import React from 'react';
 import { AptInputs } from '../../models/AptInputs';
 
@@ -11,14 +18,16 @@ type Props = {
 const STType1 = ({ id, inputs, setInputs }: Props) => {
 	return (
 		<Box>
-			<FormControl>
-				<FormLabel>HP%</FormLabel>
-				<Input name="hp" />
-			</FormControl>
-			<FormControl>
-				<FormLabel>ATK boost</FormLabel>
-				<Input name="atk" />
-			</FormControl>
+			<HStack>
+				<FormControl>
+					<FormLabel>ATK boost</FormLabel>
+					<Input name="atk" />
+				</FormControl>
+				<FormControl>
+					<FormLabel>Activated</FormLabel>
+					<Checkbox name="isActive" />
+				</FormControl>
+			</HStack>
 		</Box>
 	);
 };
