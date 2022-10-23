@@ -12,6 +12,9 @@ export const calculateATK = (inputs: AttackInputs) => {
 	atk = Math.floor(atk * (1 + inputs.support / 100));
 	console.log(`Support: ${atk}`);
 
+	atk = Math.floor(atk * (1 + inputs.passive / 100));
+	console.log(`Passive: ${atk}`);
+
 	//Links
 	const linkBoost = inputs.links.reduce((a, b) => {
 		return a + b.atkBoost;
@@ -25,11 +28,9 @@ export const calculateATK = (inputs: AttackInputs) => {
 	console.log(`KiMulti: ${atk}`);
 
 	//passive
-	atk = Math.floor(atk * (1 + inputs.passive / 100));
-	console.log(`Passive: ${atk}`);
 
 	//super attack
-	atk = Math.floor(atk * inputs.saMulti);
+	atk = Math.floor(atk * (inputs.saMulti + 0.05 * 15));
 	console.log(`Supper attack: ${atk}`);
 
 	return atk;
