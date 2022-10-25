@@ -7,6 +7,7 @@ export interface AptInputs {
 	leader: number;
 	support: number;
 	passive: Array<any>;
+	onSuperPassive: Array<any>;
 	kiMulti: number;
 	links: MultiValue<LinkSkill>;
 	saMulti: number;
