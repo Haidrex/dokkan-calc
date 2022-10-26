@@ -6,26 +6,23 @@ import {
   HStack,
   Input,
 } from "@chakra-ui/react";
-import React from "react";
-import { AptInputs } from "../../models/AptInputs";
 
 type Props = {
   id: number;
-  inputs: AptInputs;
-  setInputs: React.Dispatch<React.SetStateAction<AptInputs>>;
+  handleChange: (event: any, id: number) => void;
 };
 
-const STType2 = ({ id, inputs, setInputs }: Props) => {
+const STType2 = ({ id, handleChange }: Props) => {
   return (
     <Box>
       <HStack>
         <FormControl>
           <FormLabel>Boost per sphere</FormLabel>
-          <Input name="perSphere" />
+          <Input name="perSphere" onChange={(e) => handleChange(e, id)} />
         </FormControl>
         <FormControl>
           <FormLabel>Spheres obtained</FormLabel>
-          <Input name="spheres" />
+          <Input name="spheres" onChange={(e) => handleChange(e, id)} />
         </FormControl>
         <FormControl>
           <FormLabel>Activated</FormLabel>

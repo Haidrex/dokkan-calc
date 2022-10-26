@@ -29,6 +29,16 @@ const Passive = ({ inputs, setInputs, addPassive }: Props) => {
 
     setInputs({ ...inputs, passive: newPassives });
   };
+
+  const handleChange = (event: any, id: number) => {
+    const newPassives = replaceItemAtIndex(inputs.passive, id - 1, {
+      ...inputs.passive[id - 1],
+      [event.target.name]: event.target.value,
+    });
+
+    setInputs({ ...inputs, passive: newPassives });
+  };
+
   return (
     <Box
       border="1px"
@@ -52,7 +62,7 @@ const Passive = ({ inputs, setInputs, addPassive }: Props) => {
                   return <option value={passive.value}>{passive.name}</option>;
                 })}
               </Select>
-              {passiveComponent(item.id, item.value, inputs, setInputs)}
+              {passiveComponent(item.id, item.value, handleChange)}
               <Divider mt="20px" mb="20px" />
             </Box>
           );

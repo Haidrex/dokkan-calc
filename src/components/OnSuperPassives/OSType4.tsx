@@ -1,39 +1,36 @@
 import {
-	Box,
-	Checkbox,
-	FormControl,
-	FormLabel,
-	HStack,
-	Input,
-} from '@chakra-ui/react';
-import React from 'react';
-import { AptInputs } from '../../models/AptInputs';
+  Box,
+  Checkbox,
+  FormControl,
+  FormLabel,
+  HStack,
+  Input,
+} from "@chakra-ui/react";
 
 type Props = {
-	id: number;
-	inputs: AptInputs;
-	setInputs: React.Dispatch<React.SetStateAction<AptInputs>>;
+  id: number;
+  handleChange: (event: any, id: number) => void;
 };
 
-const OSType4 = ({ id, inputs, setInputs }: Props) => {
-	return (
-		<Box>
-			<HStack>
-				<FormControl>
-					<FormLabel>Boost per sphere</FormLabel>
-					<Input name="perSphere" />
-				</FormControl>
-				<FormControl>
-					<FormLabel>Spheres obtained</FormLabel>
-					<Input name="spheres" />
-				</FormControl>
-				<FormControl>
-					<FormLabel>Activated</FormLabel>
-					<Checkbox name="isActive" />
-				</FormControl>
-			</HStack>
-		</Box>
-	);
+const OSType4 = ({ id, handleChange }: Props) => {
+  return (
+    <Box>
+      <HStack>
+        <FormControl>
+          <FormLabel>Boost per sphere</FormLabel>
+          <Input name="perSphere" onChange={(e) => handleChange(e, id)} />
+        </FormControl>
+        <FormControl>
+          <FormLabel>Spheres obtained</FormLabel>
+          <Input name="spheres" onChange={(e) => handleChange(e, id)} />
+        </FormControl>
+        <FormControl>
+          <FormLabel>Activated</FormLabel>
+          <Checkbox name="isActive" />
+        </FormControl>
+      </HStack>
+    </Box>
+  );
 };
 
 export default OSType4;

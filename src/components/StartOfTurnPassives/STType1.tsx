@@ -6,26 +6,23 @@ import {
   HStack,
   Input,
 } from "@chakra-ui/react";
-import React from "react";
-import { AptInputs } from "../../models/AptInputs";
 
 type Props = {
   id: number;
-  inputs: AptInputs;
-  setInputs: React.Dispatch<React.SetStateAction<AptInputs>>;
+  handleChange: (event: any, id: number) => void;
 };
 
-const STType1 = ({ id, inputs, setInputs }: Props) => {
+const STType1 = ({ id, handleChange }: Props) => {
   return (
     <Box>
       <HStack>
         <FormControl>
           <FormLabel>ATK boost</FormLabel>
-          <Input name="atk" />
+          <Input name="atk" onChange={(e) => handleChange(e, id)} />
         </FormControl>
         <FormControl>
           <FormLabel>Activated</FormLabel>
-          <Checkbox name="isActive" />
+          <Checkbox name="isActive" onChange={(e) => handleChange(e, id)} />
         </FormControl>
       </HStack>
     </Box>
