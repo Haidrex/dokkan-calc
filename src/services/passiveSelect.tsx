@@ -14,29 +14,13 @@ export const passiveComponent = (
     case "1":
       return <STType1 id={id} handleChange={handleChange} />;
     case "2":
-      return <STType1 id={id} handleChange={handleChange} />;
-    case "3":
-      return <STType1 id={id} handleChange={handleChange} />;
-    case "4":
-      return <STType1 id={id} handleChange={handleChange} />;
-    case "5":
-      return <STType1 id={id} handleChange={handleChange} />;
-    case "6":
       return <STType2 id={id} handleChange={handleChange} />;
-    case "7":
+    case "3":
       return <STType3 id={id} handleChange={handleChange} />;
-    case "8":
-      return <STType1 id={id} handleChange={handleChange} />;
-    case "9":
-      return <STType1 id={id} handleChange={handleChange} />;
-    case "10":
+    case "4":
       return <STType4 id={id} handleChange={handleChange} />;
-    case "11":
-      return <STType1 id={id} handleChange={handleChange} />;
-    case "12":
+    case "5":
       return <STType5 id={id} handleChange={handleChange} />;
-    case "13":
-      return <STType1 id={id} handleChange={handleChange} />;
     default:
       return null;
   }
