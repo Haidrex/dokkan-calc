@@ -1,5 +1,7 @@
 import { AptInputs } from "../models/AptInputs";
 import { AttackInputs } from "../models/AttackInputs";
+import { SAEffects } from "../docs/SAEffects";
+import SuperAttackEffect from "../components/Inputs/SuperAttackEffect";
 
 export const calculateATK = (inputs: AttackInputs): number => {
   let atk = inputs.attack;
@@ -24,13 +26,13 @@ export const calculateATK = (inputs: AttackInputs): number => {
   atk = Math.floor(atk * (1 + linkBoost));
   console.log(`Links: ${atk}`);
 
-  //ki Multiplier
-  atk = Math.floor(atk * (inputs.kiMulti / 100));
-  console.log(`KiMulti: ${atk}`);
-
   //super attack
   atk = Math.floor(atk * (inputs.saMulti + 0.05 * 15));
   console.log(`Supper attack: ${atk}`);
+
+  //ki Multiplier
+  atk = Math.floor(atk * (inputs.kiMulti / 100));
+  console.log(`KiMulti: ${atk}`);
 
   return atk;
 };
@@ -58,6 +60,18 @@ export const calculateAPT = (inputs: AptInputs): number => {
 
 const calculateAvgAtk = (inputs: AptInputs): number => {
   let apt = inputs.attack;
+  let ultraSuperAttack = 0;
+
+  //get the super attack effect
+  const saEffect = SAEffects.find(
+    (x) => x.value === Number(inputs.superAttackEffect)
+  );
+
+  //get the ultra super attack effect
+  const ultraSaEffect = SAEffects.find(
+    (x) => x.value === Number(inputs.ultraAttackEffect)
+  );
+
   //leader
   apt = Math.floor(apt * (1 + inputs.leader / 100));
 
@@ -70,19 +84,34 @@ const calculateAvgAtk = (inputs: AptInputs): number => {
   }, 0);
   apt = Math.floor(apt * (1 + linkBoost));
 
-  if (inputs.ultraAttackEffect !== "0") {
-    const startOfTurnBoost = calculateStartOfTurnPassive(inputs);
-    const onSuperBoost = caulculateOnSuperPassive(inputs);
+  //passive
+  const startOfTurnBoost = calculateStartOfTurnPassive(inputs);
+  const onSuperBoost = caulculateOnSuperPassive(inputs);
 
-    console.log(`startOfTurnBoost: ${startOfTurnBoost}`);
-    console.log(`onSuperBoost: ${onSuperBoost}`);
+  console.log(`startOfTurnBoost: ${startOfTurnBoost}`);
+  console.log(`onSuperBoost: ${onSuperBoost}`);
+
+  apt = Math.floor(apt * (1 + (startOfTurnBoost + onSuperBoost) / 100));
+  console.log(`Passive: ${apt}`);
+
+  //ultra super attack calculation
+  if (ultraSaEffect?.value !== 0) {
+    //super attack
+    if (ultraSaEffect?.activatesOnSameTurn === true) {
+      apt = Math.floor(
+        apt * (inputs.saMulti + (0.05 * 15 + ultraSaEffect?.boost))
+      );
+    } else {
+      apt = Math.floor(apt * (inputs.saMulti + 0.05 * 15));
+    }
 
     //ki Multiplier
     apt = Math.floor(apt * (inputs.kiMulti / 100));
-
-    //super attack
-    apt = Math.floor(apt * (inputs.saMulti + 0.05 * 15));
+    ultraSuperAttack = apt;
   }
+
+  //super attack calculation
+
   return 3;
 };
 
