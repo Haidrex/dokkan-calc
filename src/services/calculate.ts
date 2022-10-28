@@ -61,7 +61,7 @@ export const calculateAPT = (inputs: AptInputs): number => {
 const calculateAvgAtk = (inputs: AptInputs): number => {
   let apt = inputs.attack;
   let ultraSuperAttack = 0;
-
+  let superAttack = 0;
   //get the super attack effect
   const saEffect = SAEffects.find(
     (x) => x.value === Number(inputs.superAttackEffect)
@@ -98,19 +98,29 @@ const calculateAvgAtk = (inputs: AptInputs): number => {
   if (ultraSaEffect?.value !== 0) {
     //super attack
     if (ultraSaEffect?.activatesOnSameTurn === true) {
-      apt = Math.floor(
+      ultraSuperAttack = Math.floor(
         apt * (inputs.saMulti + (0.05 * 15 + ultraSaEffect?.boost))
       );
     } else {
-      apt = Math.floor(apt * (inputs.saMulti + 0.05 * 15));
+      ultraSuperAttack = Math.floor(apt * (inputs.saMulti + 0.05 * 15));
     }
 
     //ki Multiplier
-    apt = Math.floor(apt * (inputs.kiMulti / 100));
-    ultraSuperAttack = apt;
+    ultraSuperAttack = Math.floor(apt * (inputs.kiMulti / 100));
   }
 
   //super attack calculation
+
+  if (saEffect?.activatesOnSameTurn === true) {
+    superAttack = Math.floor(
+      apt * (inputs.saMulti + (0.05 * 15 + saEffect?.boost))
+    );
+  } else {
+    superAttack = Math.floor(apt * (inputs.saMulti + 0.05 * 15));
+  }
+
+  //ki Multiplier
+  superAttack = Math.floor(apt * (inputs.kiMulti / 100));
 
   return 3;
 };
